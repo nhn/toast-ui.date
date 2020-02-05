@@ -1,12 +1,4 @@
 import moment from 'moment-timezone';
-// from '@toast-ui/date/LocalDate';
-// from '@toast-ui/date/UTCDate';
-// from '@toast-ui/date/MomentDate';
-// '@toast-ui/date'
-
-// 'tui.date.LocalDate';
-// 'tui.date.UTCDate';
-// 'tui.date.MomentDate';
 
 export default class MomentDate {
   constructor(...args) {
