@@ -1,7 +1,19 @@
-import moment from 'moment-timezone';
+let moment;
 
 export default class MomentDate {
+  static setMoment(m) {
+    moment = m;
+
+    return MomentDate;
+  }
+
   constructor(...args) {
+    if (!moment) {
+      throw new Error(
+        'Use "MomentDate.setMoment(moment);". MomentDate requires Moment constructor.'
+      );
+    }
+
     this.m = moment(...args);
   }
 
@@ -12,7 +24,9 @@ export default class MomentDate {
   }
 
   setTimezoneName(zoneName) {
-    this.m.tz(zoneName);
+    if (this.m.tz) {
+      this.m.tz(zoneName);
+    }
 
     return this;
   }

@@ -53,6 +53,10 @@ export interface DateConstructor {
   new (...args: any[]): DateInterface;
 }
 
+export interface MomentDateConstructor extends DateConstructor {
+  static setMoment(moment: moment.Moment): MomentDateConstructor;
+}
+
 declare var LocalDate: DateConstructor;
 declare var UTCDate: DateConstructor;
-declare var MomentDate: DateConstructor;
+declare var MomentDate: MomentDateConstructor;

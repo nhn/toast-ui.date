@@ -22,10 +22,6 @@ module.exports = (env, { mode = 'development' }) => {
       path: path.join(__dirname, 'dist'),
       filename: 'toastui-date' + (minify ? '.min' : '') + '.js'
     },
-    externals: {
-      moment: 'moment',
-      'moment-timezone': 'moment-timezone'
-    },
     module: {
       rules: [
         {

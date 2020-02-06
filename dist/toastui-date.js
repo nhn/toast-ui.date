@@ -1,19 +1,19 @@
 /*!
  * TOAST UI Date
- * @version 0.0.1 | Tue Feb 04 2020
+ * @version 0.0.1 | Thu Feb 06 2020
  * @author NHN FE Development Lab <dl_javascript@nhn.com>
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("moment-timezone"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["moment-timezone"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["Date"] = factory(require("moment-timezone"));
+		exports["Date"] = factory();
 	else
-		root["tui"] = root["tui"] || {}, root["tui"]["Date"] = factory(root["moment-timezone"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
+		root["tui"] = root["tui"] || {}, root["tui"]["Date"] = factory();
+})(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -97,17 +97,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
-
-/***/ }),
-/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -140,7 +134,6 @@ function () {
       args[_key] = arguments[_key];
     }
 
-    console.log('LocalDate', args);
     this.d = _construct(Date, args);
   }
 
@@ -259,10 +252,6 @@ setterProperties.forEach(function (prop) {
     return (_this$d2 = this.d)["setUTC".concat(prop)].apply(_this$d2, arguments);
   };
 });
-// EXTERNAL MODULE: external "moment-timezone"
-var external_moment_timezone_ = __webpack_require__(0);
-var external_moment_timezone_default = /*#__PURE__*/__webpack_require__.n(external_moment_timezone_);
-
 // CONCATENATED MODULE: ./src/momentDate.js
 function momentDate_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -270,21 +259,27 @@ function momentDate_defineProperties(target, props) { for (var i = 0; i < props.
 
 function momentDate_createClass(Constructor, protoProps, staticProps) { if (protoProps) momentDate_defineProperties(Constructor.prototype, protoProps); if (staticProps) momentDate_defineProperties(Constructor, staticProps); return Constructor; }
 
- // from '@toast-ui/date/LocalDate';
-// from '@toast-ui/date/UTCDate';
-// from '@toast-ui/date/MomentDate';
-// '@toast-ui/date'
-// 'tui.date.LocalDate';
-// 'tui.date.UTCDate';
-// 'tui.date.MomentDate';
+var moment;
 
-var momentDate_MomentDate =
+var MomentDate =
 /*#__PURE__*/
 function () {
+  momentDate_createClass(MomentDate, null, [{
+    key: "setMoment",
+    value: function setMoment(m) {
+      moment = m;
+      return MomentDate;
+    }
+  }]);
+
   function MomentDate() {
     momentDate_classCallCheck(this, MomentDate);
 
-    this.m = external_moment_timezone_default.a.apply(void 0, arguments);
+    if (!moment) {
+      throw new Error('Use "MomentDate.setMoment(moment);". MomentDate requires Moment constructor.');
+    }
+
+    this.m = moment.apply(void 0, arguments);
   }
 
   momentDate_createClass(MomentDate, [{
@@ -296,7 +291,10 @@ function () {
   }, {
     key: "setTimezoneName",
     value: function setTimezoneName(zoneName) {
-      this.m.tz(zoneName);
+      if (this.m.tz) {
+        this.m.tz(zoneName);
+      }
+
       return this;
     }
   }, {
@@ -373,7 +371,7 @@ function () {
   }, {
     key: "setTime",
     value: function setTime(t) {
-      this.m = external_moment_timezone_default()(t);
+      this.m = moment(t);
       return this.getTime();
     }
   }, {
@@ -434,18 +432,14 @@ function () {
 
 
 // CONCATENATED MODULE: ./src/index.js
-/* concated harmony reexport LocalDate */__webpack_require__.d(__webpack_exports__, "LocalDate", function() { return LocalDate; });
-/* concated harmony reexport UTCDate */__webpack_require__.d(__webpack_exports__, "UTCDate", function() { return UTCDate; });
-/* concated harmony reexport MomentDate */__webpack_require__.d(__webpack_exports__, "MomentDate", function() { return momentDate_MomentDate; });
 
 
 
 /* harmony default export */ var src = __webpack_exports__["default"] = ({
   LocalDate: LocalDate,
   UTCDate: UTCDate,
-  MomentDate: momentDate_MomentDate
+  MomentDate: MomentDate
 });
-
 
 /***/ })
 /******/ ])["default"];
