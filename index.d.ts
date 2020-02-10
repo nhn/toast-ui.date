@@ -54,7 +54,7 @@ export interface DateConstructor {
 }
 
 export interface MomentDateConstructor extends DateConstructor {
-  static setMoment(moment: moment.Moment): MomentDateConstructor;
+  setMoment(moment: any): DateConstructor;
 }
 
 declare var LocalDate: DateConstructor;
