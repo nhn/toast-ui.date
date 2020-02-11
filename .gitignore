@@ -63,3 +63,6 @@ markup
 perf/**/*.json
 
 stats.json
+
+# not support bower
+dist/
