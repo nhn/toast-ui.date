@@ -1,7 +1,11 @@
 // Type definitions for TOAST UI Date v0.0.1
 // TypeScript Version: 3.7.5
 
-export interface DateInterface {
+export interface TuiDateConstructor {
+  new (...args: any[]): DateInterface;
+}
+
+export class DateInterface {
   setTimezoneOffset(offset: number): DateInterface;
 
   setTimezoneName(zoneName: string): DateInterface;
@@ -49,14 +53,8 @@ export interface DateInterface {
   toString(): string;
 }
 
-export interface DateConstructor {
-  new (...args: any[]): DateInterface;
+export class LocalDate extends DateInterface {}
+export class UTCDate extends DateInterface {}
+export class MomentDate extends DateInterface {
+  static setMoment(moment: any): TuiDateConstructor;
 }
-
-export interface MomentDateConstructor extends DateConstructor {
-  setMoment(moment: any): DateConstructor;
-}
-
-declare var LocalDate: DateConstructor;
-declare var UTCDate: DateConstructor;
-declare var MomentDate: MomentDateConstructor;
