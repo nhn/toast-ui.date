@@ -4,7 +4,6 @@ const path = require('path');
 const webpack = require('webpack');
 const SafeUmdPlugin = require('safe-umd-webpack-plugin');
 
-const minify = process.argv.indexOf('--minify') >= 0;
 const BANNER = [
   'TOAST UI Date',
   '@version ' + pkg.version + ' | ' + new Date().toDateString(),
@@ -12,7 +11,7 @@ const BANNER = [
   '@license ' + pkg.license
 ].join('\n');
 
-module.exports = (env, { mode = 'development' }) => {
+module.exports = (env, { mode = 'development', minify }) => {
   const config = {
     entry: './src/index.js',
     output: {
