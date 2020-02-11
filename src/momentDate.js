@@ -26,6 +26,10 @@ export default class MomentDate {
   setTimezoneName(zoneName) {
     if (this.m.tz) {
       this.m.tz(zoneName);
+    } else {
+      throw new Error(
+        'It requires moment-timezone. Use "MomentDate.setMoment()" with moment-timezone'
+      );
     }
 
     return this;
