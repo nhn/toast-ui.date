@@ -1,6 +1,22 @@
 import moment from 'moment';
 import MomentDate from '../src/momentDate';
 
+describe('MomentDate should throw error ', () => {
+  test('if there is no moment', () => {
+    expect(() => new MomentDate()).toThrow();
+  });
+
+  test('setTimezoneName() needs moment-timezone', () => {
+    MomentDate.setMoment(moment);
+
+    const timezoneName = 'US/Pacific';
+
+    expect(() => new MomentDate('2020-06-01T00:00:00').setTimezoneName(timezoneName)).toThrow();
+
+    MomentDate.setMoment();
+  });
+});
+
 describe('MomentDate based on moment', () => {
   beforeEach(() => {
     MomentDate.setMoment(moment);
@@ -10,6 +26,7 @@ describe('MomentDate based on moment', () => {
     const date = new MomentDate('2020-01-29T19:20:00');
 
     expect(date.toDate() instanceof Date).toBe(true);
+    expect(date.toDate().getTime()).toBe(date.getTime());
   });
 
   test('clone() returns a cloned instance', () => {
@@ -20,7 +37,7 @@ describe('MomentDate based on moment', () => {
     expect(cloned.getTime()).toBe(date.getTime());
   });
 
-  test('uses moment getters', () => {
+  test('getters should do same thing with native Date', () => {
     const nativeDate = new Date('2020-01-29T19:20:00');
     const date = new MomentDate('2020-01-29T19:20:00');
 
@@ -36,7 +53,7 @@ describe('MomentDate based on moment', () => {
     expect(date.getDay()).toBe(nativeDate.getDay());
   });
 
-  test('uses moment setters', () => {
+  test('setters should do same thing with native Date', () => {
     const nativeDate = new Date('2020-01-29T19:20:00');
     const date = new MomentDate();
     const time = nativeDate.getTime();
@@ -60,22 +77,5 @@ describe('MomentDate based on moment', () => {
 
     expect(date.getTimezoneOffset()).toBe(offset);
     expect(utc.getTimezoneOffset()).toBe(0);
-  });
-
-  test('setTimezoneName() is not available if having moment', () => {
-    MomentDate.setMoment(moment);
-
-    const timezoneName = 'US/Pacific';
-    const nativeOffset = new Date('2020-06-01T00:00:00').getTimezoneOffset();
-    const pst = 480;
-    const pdt = 420;
-    const jun = new MomentDate('2020-06-01T00:00:00').setTimezoneName(timezoneName);
-    const dec = new MomentDate('2020-12-01T00:00:00').setTimezoneName(timezoneName);
-    const utc = new MomentDate('2020-12-01T00:00:00').setTimezoneName('Etc/UTC');
-
-    expect(jun.getTimezoneOffset()).not.toBe(pdt);
-    expect(dec.getTimezoneOffset()).not.toBe(pst);
-    expect(utc.getTimezoneOffset()).not.toBe(0);
-    expect(jun.getTimezoneOffset()).toBe(nativeOffset);
   });
 });

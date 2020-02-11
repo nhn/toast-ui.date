@@ -10,7 +10,7 @@ export default class MomentDate {
   constructor(...args) {
     if (!moment) {
       throw new Error(
-        'Use "MomentDate.setMoment(moment);". MomentDate requires Moment constructor.'
+        'MomentDate requires Moment constructor. Use "MomentDate.setMoment(moment);".'
       );
     }
 
@@ -54,11 +54,7 @@ export default class MomentDate {
   getTimezoneOffset() {
     const offset = -this.m.utcOffset();
 
-    if (Math.abs(offset) === 0) {
-      return 0;
-    }
-
-    return offset;
+    return Math.abs(offset) ? offset : 0;
   }
 
   getFullYear() {

@@ -3,7 +3,6 @@ import LocalDate from '../src/localDate';
 test('LocalDate uses local date.', () => {
   const date = new LocalDate('2020-01-29T19:20:00');
 
-  expect(date.d instanceof Date).toBe(true);
   expect(date.toDate() instanceof Date).toBe(true);
   expect(() => date.setTimezoneOffset(420)).toThrow();
   expect(() => date.setTimezoneName('Asia/Seoul')).toThrow();
