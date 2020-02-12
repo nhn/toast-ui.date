@@ -3,7 +3,11 @@ function throwNotSupported() {
 }
 export default class LocalDate {
   constructor(...args) {
-    this.d = new Date(...args);
+    if (args[0] instanceof Date) {
+      this.d = new Date(args[0].getTime());
+    } else {
+      this.d = new Date(...args);
+    }
   }
 
   setTimezoneOffset() {
