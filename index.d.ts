@@ -6,6 +6,8 @@ export interface TuiDateConstructor {
 }
 
 export class DateInterface {
+  constructor(...args: any[]);
+
   setTimezoneOffset(offset: number): DateInterface;
 
   setTimezoneName(zoneName: string): DateInterface;
