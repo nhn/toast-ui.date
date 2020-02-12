@@ -1,6 +1,6 @@
 {
   "name": "@toast-ui/date",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "TOAST UI Components: A Date interface  which is extensible. It provides UTCDate, LocalDate, MomentDate.",
   "main": "dist/toastui-date.js",
   "module": "src/",
