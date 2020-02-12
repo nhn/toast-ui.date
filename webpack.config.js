@@ -15,7 +15,7 @@ module.exports = (env, { mode = 'development', minify }) => {
   const config = {
     entry: './src/index.js',
     output: {
-      library: ['tui', 'Date'],
+      library: ['toastui', 'Date'],
       libraryTarget: 'umd',
       libraryExport: 'default',
       path: path.join(__dirname, 'dist'),
