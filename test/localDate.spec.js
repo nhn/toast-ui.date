@@ -45,3 +45,17 @@ test('LocalDate uses local date setters', () => {
   expect(date.setSeconds(1, 0)).toBe(time + ONE_MINUTE + ONE_SECOND);
   expect(date.setMilliseconds(1)).toBe(time + ONE_MINUTE + ONE_SECOND + 1);
 });
+
+test('If iso 8601 date string and no timezone info, LocalDate uses new Date(year, monthIndex[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);', () => {
+  const nativeDate = new Date(2020, 0, 29, 19, 20, 0);
+  const date = new LocalDate('2020-01-29T19:20:00');
+
+  expect(date.getTime()).toBe(nativeDate.getTime());
+});
+
+test('If iso 8601 date string and timezone info, LocalDate uses new Date(dateString);', () => {
+  const nativeDate = new Date('2020-01-29T19:20:00Z');
+  const date = new LocalDate('2020-01-29T19:20:00Z');
+
+  expect(date.getTime()).toBe(nativeDate.getTime());
+});
