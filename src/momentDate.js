@@ -116,19 +116,19 @@ export default class MomentDate {
     return this.getTime();
   }
 
-  setHours(h, M = this.getMinutes(), s = this.getSeconds(), ms = this.getMilliseconds()) {
+  setHours(h, m = this.getMinutes(), s = this.getSeconds(), ms = this.getMilliseconds()) {
     this.m
       .hours(h)
-      .minutes(M)
+      .minutes(m)
       .seconds(s)
       .milliseconds(ms);
 
     return this.getTime();
   }
 
-  setMinutes(M, s = this.getSeconds(), ms = this.getMilliseconds()) {
+  setMinutes(m, s = this.getSeconds(), ms = this.getMilliseconds()) {
     this.m
-      .minutes(M)
+      .minutes(m)
       .seconds(s)
       .milliseconds(ms);
 
