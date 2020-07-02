@@ -59,3 +59,10 @@ test('If iso 8601 date string and timezone info, LocalDate uses new Date(dateStr
 
   expect(date.getTime()).toBe(nativeDate.getTime());
 });
+
+test('If milliseconds with dateString, LocalDate can get a valid date', () => {
+  const nativeDate = new Date('2020-01-29T19:20:00.999');
+  const date = new LocalDate('2020-01-29T19:20:00.999');
+
+  expect(date.getTime()).toBe(nativeDate.getTime());
+});
