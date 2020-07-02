@@ -12,7 +12,7 @@ function throwNotSupported() {
 function getDateTime(dateString) {
   const match = rISO8601.exec(dateString);
   if (match) {
-    const [, y, M, d, h, m, s, __, ms, zoneInfo] = match;
+    const [, y, M, d, h, m, s, , ms, zoneInfo] = match;
 
     return {
       y: Number(y),
