@@ -59,3 +59,21 @@ test('If iso 8601 date string and timezone info, LocalDate uses new Date(dateStr
 
   expect(date.getTime()).toBe(nativeDate.getTime());
 });
+
+test('If dateString matches the regular expression, LocalDate can get a valid date', () => {
+  expect(new Date('2020-01-29T19:20:00.999').getTime()).toBe(
+    new LocalDate('2020-01-29T19:20:00.999').getTime()
+  );
+  expect(new Date('2020-01-29T19:20:00').getTime()).toBe(
+    new LocalDate('2020-01-29T19:20:00').getTime()
+  );
+  expect(new Date('2020-01-29T19:20:00.999+09:00').getTime()).toBe(
+    new LocalDate('2020-01-29T19:20:00.999+09:00').getTime()
+  );
+  expect(new Date('2020-01-29T19:20:00.999Z').getTime()).toBe(
+    new LocalDate('2020-01-29T19:20:00.999Z').getTime()
+  );
+  expect(new Date('2020-01-29T19:20:00+09:00').getTime()).toBe(
+    new LocalDate('2020-01-29T19:20:00+09:00').getTime()
+  );
+});
